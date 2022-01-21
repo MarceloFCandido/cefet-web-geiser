@@ -1,9 +1,16 @@
 // importação de dependência(s)
-
+import express from 'express'
 
 // variáveis globais deste módulo
 const PORT = 3000
 const db = {}
+
+const app = express()
+app.use(express.static("./client/"))
+
+app.listen(3000, () => {
+  console.log("App executando na porta 3000.")
+})
 
 
 // carregar "banco de dados" (data/jogadores.json e data/jogosPorJogador.json)
