@@ -31,6 +31,25 @@ app.get('/', (req, res) => {
   res.render('index', db.jogadores)
 })
 
+app.get('/jogador/:id', (req, res) => {
+  const playerdId = req.params.id
+
+  const player = db.jogadores.players.find(({ steamid }) => steamid === playerdId)
+  const games = db.jogosPorJogadores[playerdId]
+
+  games.games.sort((a, b) => b.playtime_forever - a.playtime_forever)
+
+  const calculated = {
+    nonPlayed: games.games.filter(({ playtime_forever }) => playtime_forever === 0).length,
+    favoriteGame: { ...games.games[0], playtime_forever: parseInt(games.games[0].playtime_forever / 60) },
+    mostPlayedGames: games.games.slice(0, 5).map(game => ({ ...game, playtime_forever: parseInt(game.playtime_forever / 60) }))
+  }
+
+  console.log(calculated)
+
+  res.render('jogador', { player, game_count: games.game_count, calculated })
+})
+
 
 // EXERCÍCIO 3
 // definir rota para página de detalhes de um jogador --> renderizar a view
