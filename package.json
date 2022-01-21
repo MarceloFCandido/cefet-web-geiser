@@ -1,0 +1,14 @@
+{
+  "name": "cefet-web-geiser",
+  "version": "1.0.0",
+  "description": "Um registrador de jogos",
+  "main": "server/app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarceloFCandido/cefet-web-geiser.git"
+  },
+  "homepage": "https://github.com/MarceloFCandido/cefet-web-geiser#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
